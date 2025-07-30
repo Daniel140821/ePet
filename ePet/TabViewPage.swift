@@ -9,7 +9,19 @@ import SwiftUI
 
 struct TabViewPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        TabView {
+            HomePage().tabItem {
+                Image(systemName: "pawprint.fill")
+                Text("我的寵物") }.tag(1)
+            
+            MakeMoney().tabItem {
+                Image(systemName: "dollarsign")
+                Text("賺錢") }.tag(2)
+            ShopView().tabItem {
+                Image(systemName: "cart")
+                Text("商店") }.tag(3)
+        }
     }
 }
 
