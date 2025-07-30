@@ -54,6 +54,9 @@ struct HomePage: View {
                                     .onTapGesture{
                                         HaveChicken = HaveChicken - 1
                                         
+                                        player.playSound(soundName: "eat", type: "mp3")
+
+                                        
                                         happy = true
                                         
                                         timer = Timer.scheduledTimer(withTimeInterval: 10,repeats: false) { [self] _ in
@@ -80,7 +83,7 @@ struct HomePage: View {
             }
             .padding(.horizontal)
             
-            Image(UserSelectedPet!)
+            Image(UserSelectedPet ?? "Cat")
                 .resizable()
                 .scaledToFit()
                 .padding()
@@ -122,7 +125,7 @@ struct HomePage: View {
                     }
                 }
                 .onAppear{
-                    print(UserSelectedPet!)
+                    print(UserSelectedPet ?? "Cat")
                 }
             
             HStack{
