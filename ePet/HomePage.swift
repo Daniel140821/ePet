@@ -122,7 +122,6 @@ struct HomePage: View {
                     }
                 }
                 .onAppear{
-                    HaveChicken = 1
                     print(UserSelectedPet!)
                 }
             
