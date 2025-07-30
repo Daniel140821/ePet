@@ -42,40 +42,43 @@ struct HomePage: View {
             
             HStack{
                 ScrollView(.horizontal){
-                    if HaveChicken != 0{
-                        ForEach(0..<HaveChicken){_ in
-                            Image("ChickenNoBG")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80)
-                                .padding(.horizontal)
-                                .onTapGesture{
-                                    withAnimation{
+                    HStack{
+                        if HaveChicken > 0{
+                            ZStack{}
+                                .padding(.trailing)
+                            ForEach(0..<HaveChicken){_ in
+                                Image("ChickenNoBG")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80)
+                                    .onTapGesture{
                                         HaveChicken = HaveChicken - 1
-                                    }
-                                    
-                                    happy = true
-                                    
-                                    timer = Timer.scheduledTimer(withTimeInterval: 10,repeats: true) { [self] _ in
-                                        withAnimation{
-                                            happy = false
+                                        
+                                        happy = true
+                                        
+                                        timer = Timer.scheduledTimer(withTimeInterval: 10,repeats: false) { [self] _ in
+                                            withAnimation{
+                                                happy = false
+                                            }
+                                            timer?.invalidate()
                                         }
-                                        timer?.invalidate()
+                                        RunLoop.current.add(timer!, forMode: .common)
                                     }
-                                    RunLoop.current.add(timer!, forMode: .common)
-                                }
+                            }
                         }
                     }
                 }
             }
             .frame(maxWidth: .infinity)
             .frame(height: 80)
+            .clipShape(Capsule())
             .background{
                 Capsule()
                     .foregroundColor(.white)
                     .shadow(radius: 6)
+
             }
-            .padding()
+            .padding(.horizontal)
             
             Image(UserSelectedPet!)
                 .resizable()
@@ -95,7 +98,7 @@ struct HomePage: View {
                             happy = true
                         }
                         
-                        timer = Timer.scheduledTimer(withTimeInterval: 2,repeats: true) { [self] _ in
+                        timer = Timer.scheduledTimer(withTimeInterval: 2,repeats: false) { [self] _ in
                             withAnimation{
                                 happy = false
                             }
@@ -109,7 +112,7 @@ struct HomePage: View {
                             happy = true
                         }
                         
-                        timer = Timer.scheduledTimer(withTimeInterval: 2,repeats: true) { [self] _ in
+                        timer = Timer.scheduledTimer(withTimeInterval: 2,repeats: false) { [self] _ in
                             withAnimation{
                                 happy = false
                             }
@@ -119,6 +122,7 @@ struct HomePage: View {
                     }
                 }
                 .onAppear{
+                    HaveChicken = 1
                     print(UserSelectedPet!)
                 }
             
@@ -128,6 +132,7 @@ struct HomePage: View {
                     .frame(width: 60,height: 60)
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(.white, happy ? .orange : .gray)
+                    .colorScheme(.light)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 80)
@@ -143,6 +148,8 @@ struct HomePage: View {
             Color.white.ignoresSafeArea()
             UserSelectedPet == "tutu" ? Color.pink.opacity(0.4).ignoresSafeArea() : Color.blue.opacity(0.4).ignoresSafeArea()
         }
+        .foregroundColor(.black)
+        .animation(.easeInOut, value: HaveChicken)
     }
 }
 

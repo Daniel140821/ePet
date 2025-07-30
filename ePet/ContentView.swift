@@ -107,11 +107,6 @@ struct ContentView: View {
             } message: {
                 Text("你是否願意永遠愛豹豹")
             }
-            
-            
-            
-            
-            
             HStack{
                 Spacer()
                 

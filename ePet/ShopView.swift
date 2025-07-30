@@ -93,9 +93,15 @@ struct ShopView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 300)
                 .background{
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color(.systemBackground))
-                        .shadow(radius: 6)
+                    if colorScheme == .light{
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color(.systemBackground))
+                            .shadow(radius: 6)
+                    }else{
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color(.secondarySystemBackground))
+                            .shadow(color:.white.opacity(0.4),radius: 1)
+                    }
                 }
                 .padding()
             }
