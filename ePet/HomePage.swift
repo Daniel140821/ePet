@@ -56,7 +56,7 @@ struct HomePage: View {
                                     
                                     happy = true
                                     
-                                    timer = Timer.scheduledTimer(withTimeInterval: 2,repeats: true) { [self] _ in
+                                    timer = Timer.scheduledTimer(withTimeInterval: 10,repeats: true) { [self] _ in
                                         withAnimation{
                                             happy = false
                                         }
