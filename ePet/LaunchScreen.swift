@@ -35,7 +35,6 @@ struct LaunchScreen: View {
             }
             .padding()
             .onAppear{
-                UserSelectedPet = nil
                 timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
                     withAnimation{
                         GoNextPage = true
