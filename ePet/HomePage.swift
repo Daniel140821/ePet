@@ -43,30 +43,40 @@ struct HomePage: View {
             HStack{
                 ScrollView(.horizontal){
                     HStack{
-                        if HaveChicken > 0{
-                            ZStack{}
-                                .padding(.trailing)
-                            ForEach(0..<HaveChicken){_ in
-                                Image("ChickenNoBG")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 80)
-                                    .onTapGesture{
-                                        HaveChicken = HaveChicken - 1
-                                        
-                                        player.playSound(soundName: "eat", type: "mp3")
-
-                                        
-                                        happy = true
-                                        
-                                        timer = Timer.scheduledTimer(withTimeInterval: 10,repeats: false) { [self] _ in
-                                            withAnimation{
-                                                happy = false
-                                            }
-                                            timer?.invalidate()
-                                        }
-                                        RunLoop.current.add(timer!, forMode: .common)
+                        ZStack{
+                            if HaveChicken > 0{
+                                VStack{
+                                    Spacer()
+                                    HStack{
+                                        Spacer()
+                                        Text("×\(HaveChicken)")
+                                            .padding(.vertical)
+                                            .padding(.horizontal,10)
                                     }
+                                }
+                                ForEach(0..<HaveChicken){_ in
+                                    Image("ChickenNoBG")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 80)
+                                        .padding(.horizontal)
+                                        .onTapGesture{
+                                            HaveChicken = HaveChicken - 1
+                                            
+                                            player.playSound(soundName: "eat", type: "m4a")
+                                            
+                                            
+                                            happy = true
+                                            
+                                            timer = Timer.scheduledTimer(withTimeInterval: 10,repeats: false) { [self] _ in
+                                                withAnimation{
+                                                    happy = false
+                                                }
+                                                timer?.invalidate()
+                                            }
+                                            RunLoop.current.add(timer!, forMode: .common)
+                                        }
+                                }
                             }
                         }
                     }
