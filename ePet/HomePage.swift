@@ -11,7 +11,7 @@ struct HomePage: View {
     let player = SoundPlayer()
 
     @AppStorage("UserSelectedPet") var UserSelectedPet : String?
-    //var UserSelectedPet : String? = "tutu"
+    //var UserSelectedPet : String? = "Cat"
     @AppStorage("Money") var Money : Int = 0
     
     @AppStorage("HaveChicken") var HaveChicken : Int = 0
@@ -105,9 +105,9 @@ struct HomePage: View {
                     timer?.invalidate()
                     
                     if UserSelectedPet == "Cat"{
-                        let num = Int.random(in: 1...3)
+                        let num = Int.random(in: 1...2)
                         
-                        player.playSound(soundName: "cat\(num)", type: "mp3")
+                        player.playSound(soundName: "cat\(num)", type: "m4a")
                         
                         print(num)
                         
@@ -123,7 +123,9 @@ struct HomePage: View {
                         }
                         RunLoop.current.add(timer!, forMode: .common)
                     }else{
-                        player.playSound(soundName: "tutu1", type: "wav")
+                        let num = Int.random(in: 1...2)
+                        
+                        player.playSound(soundName: "tutu\(num)", type: "m4a")
                         
                         withAnimation{
                             happy = true
