@@ -63,7 +63,7 @@ struct HomePage: View {
                                         .onTapGesture{
                                             HaveChicken = HaveChicken - 1
                                             
-                                            player.playSound(soundName: "eat", type: "m4a")
+                                            player.playSound(soundName: "eat", type: "mp3")
                                             
                                             
                                             happy = true
